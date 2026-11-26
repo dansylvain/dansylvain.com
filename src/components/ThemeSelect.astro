@@ -1,0 +1,49 @@
+---
+// Sans JavaScript, le sélecteur reste masqué et le thème suit le système.
+// La valeur enregistrée est appliquée avant le rendu par le script de BaseLayout.
+---
+
+<label class="theme-select" hidden>
+  Theme
+  <select data-testid="theme-select">
+    <option value="system">System</option>
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+  </select>
+</label>
+
+<script>
+  const label = document.querySelector<HTMLLabelElement>('.theme-select');
+  const select = label?.querySelector('select');
+
+  if (label && select) {
+    const root = document.documentElement;
+    select.value = root.dataset.theme ?? 'system';
+    label.hidden = false;
+
+    select.addEventListener('change', () => {
+      const theme = select.value;
+      if (theme === 'system') delete root.dataset.theme;
+      else root.dataset.theme = theme;
+
+      // Le stockage peut être refusé par le navigateur : le choix vaut alors pour la page.
+      try {
+        if (theme === 'system') localStorage.removeItem('theme');
+        else localStorage.setItem('theme', theme);
+      } catch {}
+    });
+  }
+</script>
+
+<style>
+  @layer components {
+    .theme-select {
+      color: var(--muted-foreground);
+      font-size: var(--text-sm);
+    }
+
+    select {
+      margin-left: var(--space-1);
+    }
+  }
+</style>

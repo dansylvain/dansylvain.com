@@ -1,0 +1,74 @@
+/* Styles des éléments HTML. Les styles propres à un composant vivent dans son fichier .astro. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0 auto;
+    max-width: var(--measure);
+    padding: 0 var(--space-4);
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: var(--leading-normal);
+  }
+
+  body.wide {
+    max-width: var(--measure-wide);
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--leading-tight);
+    text-wrap: balance;
+  }
+
+  h1 {
+    margin: var(--space-8) 0 var(--space-4);
+    font-size: var(--text-h1);
+  }
+
+  h2 {
+    margin: var(--space-9) 0 var(--space-3);
+    font-size: var(--text-h2);
+  }
+
+  h3 {
+    margin: var(--space-6) 0 var(--space-2);
+    font-size: var(--text-h3);
+  }
+
+  a {
+    color: var(--primary);
+    text-underline-offset: 0.15em;
+  }
+
+  ul {
+    padding-left: var(--space-5);
+  }
+
+  button,
+  select {
+    padding: var(--space-1) 0.6rem;
+    border: 1px solid var(--input);
+    border-radius: var(--radius);
+    background: var(--background);
+    color: var(--foreground);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+}

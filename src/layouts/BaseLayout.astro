@@ -1,14 +1,19 @@
 ---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/print.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import '../styles/global.css';
+import { name } from '../data/site';
 
 interface Props {
   title: string;
   description: string;
+  /** Colonne élargie, pour les démos. */
+  wide?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, wide = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -18,12 +23,26 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <title>{title} · Dan Sylvain</title>
+    <!--
+      Ordre des couches fixé avant toute feuille de style, quel que soit l'ordre de chargement.
+      Les noms theme, base, components et utilities sont ceux de Tailwind v4.
+    -->
+    <style is:inline>
+      @layer theme, base, components, utilities, print;
+    </style>
+    <title>{title} · {name}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- En ligne et bloquant : évite un flash du mauvais thème au chargement. -->
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
   </head>
-  <body>
+  <body class:list={{ wide }}>
     <a class="skip-link" href="#content">Skip to content</a>
     <SiteHeader />
     <main id="content">
@@ -32,3 +51,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <SiteFooter />
   </body>
 </html>
+
+<style>
+  @layer components {
+    .skip-link {
+      position: absolute;
+      left: -100vw;
+    }
+
+    .skip-link:focus {
+      left: var(--space-4);
+      top: var(--space-2);
+    }
+  }
+</style>

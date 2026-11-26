@@ -1,8 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 
-const projets = (await getCollection('projets', ({ data }) => !data.draft)).sort((a, b) => a.data.order - b.data.order);
+const projets = (await getCollection('projets', ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
 <BaseLayout title="Portfolio" description="Projects, technical choices and code.">
@@ -10,15 +13,7 @@ const projets = (await getCollection('projets', ({ data }) => !data.draft)).sort
   <p>Projects, technical choices and code.</p>
   {
     projets.map(({ id, data }) => (
-      <article>
-        <h2>
-          <a href={`/portfolio/${id}/`} data-testid={`project-${id}`}>
-            {data.title}
-          </a>
-        </h2>
-        <p>{data.summary}</p>
-        <p class="tags">{data.tech.join(' · ')}</p>
-      </article>
+      <ProjectCard id={id} title={data.title} summary={data.summary} tech={data.tech} />
     ))
   }
 </BaseLayout>

@@ -10,3 +10,19 @@ const { title, place, period, details } = Astro.props;
   <p><strong>{title}</strong>{place && `, ${place}`} <span class="period">· {period}</span></p>
   {details && <p>{details}</p>}
 </li>
+
+<style>
+  @layer components {
+    .cv-entry {
+      margin-bottom: var(--space-3);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .period {
+      color: var(--muted-foreground);
+    }
+  }
+</style>

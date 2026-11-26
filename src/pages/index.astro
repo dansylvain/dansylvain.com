@@ -1,19 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { home, name } from '../data/site';
 ---
 
-<BaseLayout title="Home" description="Dan Sylvain, software developer: systems, backend, tooling and data.">
-  <h1>Dan Sylvain</h1>
-  <p>
-    Software developer trained at 42. Remote freelance work: backend, command-line tools, data
-    pipelines and technical integration. Open to developer positions (systems, backend,
-    applications).
-  </p>
+<BaseLayout title="Home" description={home.description}>
+  <h1>{name}</h1>
+  <p>{home.intro}</p>
 
   <h2>Skills</h2>
   <ul>
-    <li>Systems and low level: C, C++, Rust, Linux</li>
-    <li>Applications and data: Python, SQL, C#, TypeScript</li>
+    {home.skills.map((skill) => <li>{skill}</li>)}
   </ul>
 
   <h2>Background</h2>

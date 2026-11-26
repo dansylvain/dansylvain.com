@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/TagList.astro';
 
 export async function getStaticPaths() {
   const projets = await getCollection('projets', ({ data }) => !data.draft);
@@ -20,7 +21,7 @@ const { Content } = await render(projet);
   <article>
     <h1>{title}</h1>
     <p>{summary}</p>
-    <p class="tags">{tech.join(' · ')}</p>
+    <TagList tags={tech} />
     <p><a href={repo} data-testid="project-repo">Source code on GitHub</a></p>
     <Content />
   </article>

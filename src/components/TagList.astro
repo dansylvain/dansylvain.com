@@ -1,0 +1,19 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<p class="tags">{tags.join(' · ')}</p>
+
+<style>
+  @layer components {
+    .tags {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--muted-foreground);
+    }
+  }
+</style>

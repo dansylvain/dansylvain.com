@@ -10,15 +10,22 @@ import {
   profile,
   skills,
 } from '../../data/cv';
+import { name, profileLinks } from '../../data/site';
 ---
 
 <BaseLayout title="CV" description="Dan Sylvain, CV: software development and languages.">
-  <h1>Dan Sylvain</h1>
+  <h1>{name}</h1>
   <p>
     {headline}<br />
     {location}<br />
-    <a href="https://github.com/dansylvain">github.com/dansylvain</a> ·
-    <a href="https://www.linkedin.com/in/dan-sylvain">linkedin.com/in/dan-sylvain</a>
+    {
+      profileLinks.map(({ handle, url }, index) => (
+        <>
+          {index > 0 && ' · '}
+          <a href={url}>{handle}</a>
+        </>
+      ))
+    }
   </p>
   <p class="no-print">
     <button type="button" id="print-cv" data-testid="cv-print" hidden>
@@ -63,3 +70,12 @@ import {
     button.addEventListener('click', () => window.print());
   }
 </script>
+
+<style>
+  @layer components {
+    .cv-list {
+      padding: 0;
+      list-style: none;
+    }
+  }
+</style>

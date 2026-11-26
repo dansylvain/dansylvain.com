@@ -1,0 +1,18 @@
+---
+import TagList from './TagList.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  summary: string;
+  tech: string[];
+}
+
+const { id, title, summary, tech } = Astro.props;
+---
+
+<article>
+  <h2><a href={`/portfolio/${id}/`} data-testid={`project-${id}`}>{title}</a></h2>
+  <p>{summary}</p>
+  <TagList tags={tech} />
+</article>

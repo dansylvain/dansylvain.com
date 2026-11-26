@@ -1,0 +1,60 @@
+/*
+ * Tokens du thème. Couleurs nommées selon les conventions shadcn/ui (ajout prévu plus tard).
+ * light-dark() suit `color-scheme` : le système par défaut, ou le choix de l'utilisateur.
+ */
+@layer theme {
+  :root {
+    color-scheme: light dark;
+
+    /* Surfaces et texte */
+    --background: light-dark(#ffffff, #14161a);
+    --foreground: light-dark(#1c1e21, #e6e7e9);
+    --card: light-dark(#ffffff, #1b1e23);
+    --card-foreground: var(--foreground);
+    --muted: light-dark(#f2f3f5, #22262c);
+    --muted-foreground: light-dark(#555b64, #a4a9b1);
+    --accent: light-dark(#e9eef7, #262d38);
+    --accent-foreground: var(--foreground);
+
+    /* Action, contours */
+    --primary: light-dark(#0b57b7, #8ab8ff);
+    --primary-foreground: light-dark(#ffffff, #14161a);
+    --border: light-dark(#d9dce1, #31353c);
+    --input: var(--border);
+    --ring: var(--primary);
+    --radius: 0.375rem;
+
+    /* Typographie */
+    --font-sans: system-ui, sans-serif;
+    --font-mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', monospace;
+    --text-sm: 0.875rem;
+    --text-h3: 1.0625rem;
+    --text-h2: 1.375rem;
+    --text-h1: 1.875rem;
+    --leading-tight: 1.25;
+    --leading-normal: 1.6;
+
+    /* Espacements (unité : 0.25rem) */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-9: 2.25rem;
+    --space-12: 3rem;
+
+    /* Largeurs de colonne */
+    --measure: 42rem;
+    --measure-wide: 64rem;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+  }
+}

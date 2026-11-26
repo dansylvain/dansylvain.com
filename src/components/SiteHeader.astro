@@ -1,4 +1,6 @@
 ---
+import ThemeSelect from './ThemeSelect.astro';
+
 const links = [
   { href: '/', label: 'Home', testId: 'nav-home' },
   { href: '/cv/', label: 'CV', testId: 'nav-cv' },
@@ -26,4 +28,32 @@ const isCurrent = (href: string): boolean =>
       }
     </ul>
   </nav>
+  <ThemeSelect />
 </header>
+
+<style>
+  @layer components {
+    .site-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3) var(--space-5);
+      padding: var(--space-6) 0 var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-5);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    [aria-current='page'] {
+      font-weight: 700;
+    }
+  }
+</style>
