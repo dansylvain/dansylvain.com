@@ -1,0 +1,12 @@
+---
+import type { Entry } from '../data/cv';
+
+type Props = Entry;
+
+const { title, place, period, details } = Astro.props;
+---
+
+<li class="cv-entry">
+  <p><strong>{title}</strong>{place && `, ${place}`} <span class="period">· {period}</span></p>
+  {details && <p>{details}</p>}
+</li>

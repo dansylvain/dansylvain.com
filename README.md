@@ -12,3 +12,10 @@ Site statique construit avec Astro et TypeScript.
 | `npm run check`   | Vérification des types                       |
 | `npm run build`   | Vérification puis génération dans `dist/`    |
 | `npm run preview` | Sert localement le contenu de `dist/`        |
+
+## Contenu
+
+| Contenu        | Emplacement                |
+| -------------- | -------------------------- |
+| CV             | `src/data/cv.ts`           |
+| Fiches projet  | `src/content/projets/*.md` |

@@ -1,9 +1,10 @@
 ---
 const links = [
-  { href: '/', label: 'Accueil', testId: 'nav-home' },
+  { href: '/', label: 'Home', testId: 'nav-home' },
+  { href: '/cv/', label: 'CV', testId: 'nav-cv' },
   { href: '/portfolio/', label: 'Portfolio', testId: 'nav-portfolio' },
   { href: '/blog/', label: 'Blog', testId: 'nav-blog' },
-  { href: '/demos/', label: 'Démos', testId: 'nav-demos' },
+  { href: '/demos/', label: 'Demos', testId: 'nav-demos' },
 ];
 
 const path = Astro.url.pathname.replace(/\/?$/, '/');
@@ -12,7 +13,7 @@ const isCurrent = (href: string): boolean =>
 ---
 
 <header class="site-header">
-  <nav aria-label="Navigation principale">
+  <nav aria-label="Main navigation">
     <ul>
       {
         links.map(({ href, label, testId }) => (

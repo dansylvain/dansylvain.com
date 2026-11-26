@@ -79,3 +79,63 @@ pre {
 [aria-current='page'] {
   font-weight: 700;
 }
+
+.cv-list {
+  padding: 0;
+  list-style: none;
+}
+
+.cv-entry p {
+  margin: 0;
+}
+
+.cv-entry {
+  margin-bottom: 0.75rem;
+}
+
+.period {
+  color: var(--muted-foreground);
+}
+
+.tags {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+@page {
+  margin: 15mm;
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    max-width: none;
+    padding: 0;
+    font-size: 10pt;
+    line-height: 1.4;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .no-print {
+    display: none;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  li {
+    break-inside: avoid;
+  }
+}

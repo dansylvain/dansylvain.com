@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CvEntry from '../../components/CvEntry.astro';
+import {
+  education,
+  experience,
+  headline,
+  interests,
+  location,
+  profile,
+  skills,
+} from '../../data/cv';
+---
+
+<BaseLayout title="CV" description="Dan Sylvain, CV: software development and languages.">
+  <h1>Dan Sylvain</h1>
+  <p>
+    {headline}<br />
+    {location}<br />
+    <a href="https://github.com/dansylvain">github.com/dansylvain</a> ·
+    <a href="https://www.linkedin.com/in/dan-sylvain">linkedin.com/in/dan-sylvain</a>
+  </p>
+  <p class="no-print">
+    <button type="button" id="print-cv" data-testid="cv-print" hidden>
+      Print or save as PDF
+    </button>
+  </p>
+
+  <h2>Profile</h2>
+  <p>{profile}</p>
+
+  <h2>Skills</h2>
+  <ul>
+    {skills.map(({ label, value }) => <li><strong>{label}:</strong> {value}</li>)}
+  </ul>
+
+  <h2>Experience</h2>
+  {
+    experience.map((section) => (
+      <section>
+        <h3>{section.title}</h3>
+        <ul class="cv-list">
+          {section.entries.map((entry) => <CvEntry {...entry} />)}
+        </ul>
+      </section>
+    ))
+  }
+
+  <h2>Education and certifications</h2>
+  <ul class="cv-list">
+    {education.map((entry) => <CvEntry {...entry} />)}
+  </ul>
+
+  <h2>Interests</h2>
+  <p>{interests}</p>
+</BaseLayout>
+
+<script>
+  // Le bouton reste masqué sans JavaScript.
+  const button = document.querySelector<HTMLButtonElement>('#print-cv');
+  if (button) {
+    button.hidden = false;
+    button.addEventListener('click', () => window.print());
+  }
+</script>
