@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TagList from '../../components/TagList.astro';
+
+const description = "Conway's Game of Life in C++, compiled to WebAssembly and drawn on a canvas.";
+const sourceUrl = 'https://github.com/dansylvain/dansylvain.com/tree/main/wasm/life';
+---
+
+<BaseLayout wide title="Game of Life" description={description}>
+  <h1>Game of Life</h1>
+  <p>{description}</p>
+  <TagList tags={['C++', 'WebAssembly', 'Emscripten', 'TypeScript', 'Canvas']} />
+
+  <section class="demo" aria-label="Simulation">
+    <!--
+      width et height : résolution de dessin (grille 64 × 48, 10 px par cellule).
+      La taille affichée est fixée en CSS.
+    -->
+    <canvas width="640" height="480" role="img" aria-label="Game of Life grid" data-testid="life-canvas">
+      Your browser does not support the canvas element.
+    </canvas>
+
+    <!-- Boutons désactivés tant que le module n'est pas chargé. -->
+    <div class="controls">
+      <button type="button" disabled data-testid="life-toggle">Play</button>
+      <button type="button" disabled data-testid="life-step">Step</button>
+      <button type="button" disabled data-testid="life-reset">Reset</button>
+      <span>Generation: <span data-testid="life-generation">0</span></span>
+    </div>
+
+    <p role="status" data-testid="life-status">Loading the WebAssembly module…</p>
+    <noscript><p>This demo requires JavaScript.</p></noscript>
+  </section>
+
+  <section class="note">
+    <h2>How it works</h2>
+    <p>
+      The simulation is written in C++ and compiled with Emscripten through an explicit Makefile.
+      The page only handles input, timing and drawing.
+    </p>
+    <ul>
+      <li>The grid is 64 × 48 cells, one byte per cell, and wraps around at the edges (torus).</li>
+      <li>
+        Each generation is computed into a second buffer, then copied back
+        with <code>std::memcpy</code>. The address of the visible grid therefore never changes.
+      </li>
+      <li>
+        TypeScript reads the grid directly in the module's linear memory, through a view
+        on <code>HEAPU8</code>. No cell data is copied between C++ and JavaScript.
+      </li>
+      <li>
+        The loop is driven by <code>requestAnimationFrame</code>. Cell colours come from the page
+        theme, so C++ knows nothing about presentation.
+      </li>
+    </ul>
+    <p><a href={sourceUrl} data-testid="life-source">C++ source and Makefile on GitHub</a></p>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../../scripts/life';
+</script>
+
+<style>
+  @layer components {
+    .demo {
+      max-width: 40rem;
+      margin-top: var(--space-6);
+    }
+
+    /* Le pont lit `color` pour dessiner les cellules : il suit ainsi le thème. */
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--foreground);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-3);
+    }
+
+    /* Largeur fixe : le bouton ne bouge pas quand son libellé change. */
+    [data-testid='life-toggle'] {
+      min-width: 5rem;
+    }
+
+    .note {
+      max-width: var(--measure);
+    }
+  }
+</style>
