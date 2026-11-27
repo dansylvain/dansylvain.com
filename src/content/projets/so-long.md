@@ -30,6 +30,20 @@ dropped it.
 
 I would add the destruction animation for the crystals. All the assets are ready.
 
-## Screenshot
+## Gameplay
 
-[À COMPLÉTER]
+<figure>
+  <picture>
+    <source media="(prefers-reduced-motion: reduce)" srcset="/portfolio/so-long/still.webp" />
+    <img
+      src="/portfolio/so-long/gameplay.webp"
+      alt="so_long game window: a hooded red character moves across a map bordered by rocks and collects purple crystals."
+      width="838"
+      height="348"
+      loading="lazy"
+      decoding="async"
+      data-testid="project-capture"
+    />
+  </picture>
+  <figcaption>Recording of the native Linux version. With reduced motion enabled, a still frame is shown.</figcaption>
+</figure>
