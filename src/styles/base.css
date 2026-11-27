@@ -98,4 +98,14 @@
   pre {
     font-family: var(--font-mono);
   }
+
+  /* Les longues lignes défilent dans le bloc, sans élargir la page. */
+  pre {
+    overflow-x: auto;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--muted);
+    font-size: var(--text-sm);
+  }
 }

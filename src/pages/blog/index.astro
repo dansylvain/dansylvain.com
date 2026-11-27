@@ -1,9 +1,30 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <BaseLayout title="Blog" description="Short technical notes.">
   <h1>Blog</h1>
   <p>Short technical notes.</p>
-  <p>[À COMPLÉTER]</p>
+  {
+    posts.map(({ id, data }) => (
+      <article>
+        <h2>
+          <a href={`/blog/${id}/`} data-testid={`post-${id}`}>
+            {data.title}
+          </a>
+        </h2>
+        <p>
+          <time datetime={data.date.toISOString().slice(0, 10)}>
+            {data.date.toISOString().slice(0, 10)}
+          </time>
+        </p>
+        <p>{data.summary}</p>
+      </article>
+    ))
+  }
 </BaseLayout>
