@@ -18,11 +18,11 @@ export interface Skill {
   value: string;
 }
 
-export const headline = 'Linguist and software developer · FR / EN / DE / ES';
+export const headline = 'Software developer and linguist · FR / EN / DE / ES';
 export const location = 'Rennes (relocating to Cádiz, Spain, mid-January 2027)';
 
 export const profile =
-  'I work across languages and cultures, and I build digital tools. Native French speaker, C1 in German, Spanish and English; over four years in both Germany and Spain, in customer service, team coordination and teaching. Software developer trained at 42 and AWS Certified AI Practitioner. I am looking for a role where language meets technology: multilingual technical support, LQA and localization. Remote work, flexible daytime hours.';
+  'Software developer trained at 42 (C/C++, networking, Docker, Python) and AWS Certified AI Practitioner. Native French speaker, C1 in German, Spanish and English; over four years in both Germany and Spain, in customer service, team coordination and teaching. I am looking for work where code meets language: multilingual technical support, QA and LQA automation, i18n/l10n tooling and data pipelines. Remote work, flexible daytime hours.';
 
 export const skills: Skill[] = [
   {

@@ -10,7 +10,7 @@ import {
   profile,
   skills,
 } from '../../data/cv';
-import { name, profileLinks } from '../../data/site';
+import { email, name, profileLinks } from '../../data/site';
 ---
 
 <BaseLayout title="CV" description="Dan Sylvain, CV: software development and languages.">
@@ -26,6 +26,8 @@ import { name, profileLinks } from '../../data/site';
         </>
       ))
     }
+    {' · '}
+    <a href={`mailto:${email}`} data-testid="cv-email">{email}</a>
   </p>
   <p class="no-print">
     <button type="button" id="print-cv" data-testid="cv-print" hidden>

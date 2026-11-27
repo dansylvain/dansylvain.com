@@ -1,5 +1,5 @@
 ---
-import { profileLinks } from '../data/site';
+import { email, profileLinks } from '../data/site';
 ---
 
 <footer class="site-footer">
@@ -13,7 +13,9 @@ import { profileLinks } from '../data/site';
         </li>
       ))
     }
-    <li>Email: [À COMPLÉTER]</li>
+    <li>
+      <a href={`mailto:${email}`} data-testid="link-email">{email}</a>
+    </li>
   </ul>
 </footer>
 

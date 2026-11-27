@@ -10,6 +10,8 @@ export interface ProfileLink {
 
 export const name = 'Dan Sylvain';
 
+export const email = 'dansylvain.dev@gmail.com';
+
 export const profileLinks: ProfileLink[] = [
   {
     id: 'github',
@@ -26,11 +28,13 @@ export const profileLinks: ProfileLink[] = [
 ];
 
 export const home = {
-  description: 'Dan Sylvain, software developer: systems, backend, tooling and data.',
+  description:
+    'Dan Sylvain, software developer: systems, automation, data pipelines and multilingual tooling.',
   intro:
-    'Software developer trained at 42. Remote freelance work: backend, command-line tools, data pipelines and technical integration. Open to developer positions (systems, backend, applications).',
+    'Software developer trained at 42, with a systems background in C and C++, plus some Rust. I apply low-level rigor and an automation mindset to multilingual work: QA and LQA automation, data pipelines and i18n/l10n tooling in French, English, German and Spanish. Available for remote freelance work and open to developer positions.',
   skills: [
-    'Systems and low level: C, C++, Rust, Linux',
+    'Systems and low level: C, C++, Linux, Rust (basics)',
     'Applications and data: Python, SQL, C#, TypeScript',
+    'Languages: French (native), English, German and Spanish (C1)',
   ],
 };
